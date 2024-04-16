@@ -1,3 +1,4 @@
 runtime: python311
 entrypoint: gunicorn -b :$PORT ChatController:app
-
+env_variables:
+  OPENAI_API_KEY: "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"
