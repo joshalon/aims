@@ -22,7 +22,7 @@ def generate_response():
     # Extract generated response from completion
     response = completion['choices'][0]['message']['content']
     
-    return jsonify({'response': response})
+    return response;
 
 if __name__ == '__main__':
     app.run(debug=True)
