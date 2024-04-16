@@ -1,12 +1,16 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from openai import OpenAI
 import logging
+import os
+
+api_key = os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key=api_key)
+
 
 app = Flask(__name__)
-client = OpenAI()
 app.logger.setLevel(logging.DEBUG)
 
-@app.route('/generate-response', methods=['POST'])
+@app.route("/", methods=['POST'])
 def generate_response():
     app.logger.info('This is a log message')
     data = request.get_json()
