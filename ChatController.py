@@ -2,6 +2,11 @@ from flask import Flask, request
 from openai import OpenAI
 import logging
 import os
+import sys
+import platform
+
+print("Python version:", platform.python_version())
+print("Python path:", sys.path)
 
 api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=api_key)
@@ -10,8 +15,18 @@ client = OpenAI(api_key=api_key)
 app = Flask(__name__)
 app.logger.setLevel(logging.DEBUG)
 
-@app.route("/", methods=['POST'])
+@app.route("/", methods=['GET','POST'])
 def generate_response():
+      # For GET requests, this is where you'll handle the OAuth callback.
+    if request.method == 'GET':
+        code = request.args.get('code')
+        app.logger.info("Received OAuth code: %s", code)
+        # Continue with your OAuth 2.0 flow, e.g., exchange the code for a token
+        # You would typically have additional code here to handle the exchange
+
+        # After handling the OAuth callback, you might redirect the user or show a message
+        return 'Authorization complete, you can close this window.'
+    
     app.logger.info('This is a log message')
     data = request.get_json()
     app.logger.debug("Received data: %s", data)

@@ -1,4 +1,6 @@
-#!/Users/newaccount/Desktop/aims-1/venv/bin/python
+#!/bin/sh
+'''exec' "/Users/newaccount/Documents/Projects/Back-End Projects/Python Projects/aims-1/venv/bin/python3.11" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
